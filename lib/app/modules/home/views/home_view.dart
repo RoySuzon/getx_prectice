@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:getx_prectice/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -39,6 +40,8 @@ class HomeView extends GetView<HomeController> {
                       : ListView.builder(
                           itemCount: controller.searchList.length,
                           itemBuilder: (context, index) => ListTile(
+                            onTap: () => Get.toNamed(AppPages.DETAILS_SCREEN,
+                                arguments: controller.searchList[index]),
                             title: Text(
                                 controller.searchList[index].sigla.toString()),
                           ),

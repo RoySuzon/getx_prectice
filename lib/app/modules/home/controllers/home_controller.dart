@@ -2,11 +2,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:getx_prectice/app/modules/home/posts_model.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController with StateMixin<List<Posts>> {
-  final count = 0.obs;
+  RxInt count = RxInt(0);
   RxList<Posts> datas = RxList();
   RxList<Posts> searchList = RxList();
   final searchController = TextEditingController();
@@ -16,9 +17,7 @@ class HomeController extends GetxController with StateMixin<List<Posts>> {
 
   @override
   void onInit() async {
-    await Future.delayed(Duration(seconds: 2));
     getPosts();
-
     super.onInit();
   }
 
