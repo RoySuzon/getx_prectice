@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_prectice/app/modules/Auth/controllers/auth_controller.dart';
+import 'package:getx_prectice/app/routes/app_pages.dart';
 
 class LoginScreen extends GetView<AuthController> {
   const LoginScreen({super.key});
@@ -19,6 +20,7 @@ class LoginScreen extends GetView<AuthController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
+                initialValue: controller.email.value,
                 decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -31,6 +33,7 @@ class LoginScreen extends GetView<AuthController> {
                 },
               ),
               TextFormField(
+                initialValue: controller.password.value,
                 decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 validator: (value) {
@@ -49,12 +52,24 @@ class LoginScreen extends GetView<AuthController> {
                       if (controller.formKey.currentState!.validate()) {
                         controller.formKey.currentState!.save();
                         // Handle login logic with _email and _password
-                         controller.login();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Logging in...')),
-                        );
+                        controller.login().then((value) {
+                          if (value) {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(content: Text('Logging in...')),
+                              );
+                            Get.toNamed(AppPages.INITIAL);
+                          } else {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(
+                                    content: Text('Something going wrong!...')),
+                              );
+                          }
+                        });
                       }
-                     
                     },
                     child: controller.loading.isTrue
                         ? const CircularProgressIndicator(

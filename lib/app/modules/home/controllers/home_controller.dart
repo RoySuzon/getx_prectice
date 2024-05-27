@@ -2,9 +2,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:getx_prectice/app/modules/home/posts_model.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+
+
 
 class HomeController extends GetxController with StateMixin<List<Posts>> {
   RxInt count = RxInt(0);
@@ -22,9 +23,9 @@ class HomeController extends GetxController with StateMixin<List<Posts>> {
   }
 
   getPosts() async {
-    isLoading.value = true;
     try {
-      final res = await http.get(Uri.parse(
+      isLoading.value = true;
+      final res = await get(Uri.parse(
           "https://servicodados.ibge.gov.br/api/v1/localidades/estados"));
       if (res.statusCode == 200) {
         datas.value = postsFromJson(res.body);

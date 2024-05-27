@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+Future<Box> openBox(String boxName) async {
+  final dbDir = await getApplicationDocumentsDirectory();
+
+  // init hive
+  await Hive.initFlutter(dbDir.path);
+  return await Hive.openBox(boxName);
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await openBox("data");
   runApp(
     GetMaterialApp(
       title: "Application",
