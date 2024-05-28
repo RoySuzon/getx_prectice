@@ -25,10 +25,6 @@ class AuthController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   Future<bool> login() async {
     try {

@@ -4,18 +4,22 @@ import 'package:get/get.dart';
 
 import '../controllers/splash_controller.dart';
 
-class SplashView extends GetView<SplashController> {
-  const SplashView({super.key});
+class SplashPage extends GetView<SplashPageController> {
+  const SplashPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 1,
+    return GetBuilder<SplashPageController>(
+      builder: (controller) {
+        return const Scaffold(
+          body: Center(
+            child: Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 1,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

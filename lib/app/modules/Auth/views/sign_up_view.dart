@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx_prectice/app/modules/Auth/controllers/auth_controller.dart';
 
 class SignUpView extends GetView<AuthController> {
-  const SignUpView({Key? key}) : super(key: key);
+  const SignUpView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

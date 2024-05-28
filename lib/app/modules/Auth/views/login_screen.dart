@@ -59,7 +59,7 @@ class LoginScreen extends GetView<AuthController> {
                               ..showSnackBar(
                                 const SnackBar(content: Text('Logging in...')),
                               );
-                            Get.toNamed(AppPages.INITIAL);
+                            Get.offNamed(Routes.HOME);
                           } else {
                             ScaffoldMessenger.of(context)
                               ..hideCurrentSnackBar()
@@ -82,6 +82,5 @@ class LoginScreen extends GetView<AuthController> {
         ),
       ),
     );
-    ;
   }
 }

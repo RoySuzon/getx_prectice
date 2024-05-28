@@ -20,7 +20,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: AppPages.LOGIN,
+      initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
     ),
   );

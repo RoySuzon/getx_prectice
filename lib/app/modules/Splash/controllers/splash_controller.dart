@@ -1,23 +1,31 @@
+import 'dart:developer';
 import 'package:get/get.dart';
+import 'package:getx_prectice/app/routes/app_pages.dart';
+import 'package:getx_prectice/local_db.dart';
 
-class SplashController extends GetxController {
-  //TODO: Implement SplashController
-
-  final count = 0.obs;
+class SplashPageController extends GetxController {
+  RxString isLoged = "".obs;
   @override
-  void onInit() {
+  void onInit() async {
+    isLoged.value = Boxes.loginBox.get("isLogin").toString();
+    log("message");
+    await isLogin();
     super.onInit();
+  }
+
+  Future isLogin() async {
+    Future.delayed(const Duration(seconds: 2)).then((value) {
+      if (isLoged.value == 'true') {
+        Get.offNamed(Routes.HOME);
+      } else {
+        Get.offNamed(Routes.LOGIN);
+      }
+    });
   }
 
   @override
   void onReady() {
+    log("message");
     super.onReady();
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
