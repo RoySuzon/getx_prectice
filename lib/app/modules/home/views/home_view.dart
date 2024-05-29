@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -12,10 +13,33 @@ class HomeView extends GetView<HomeController> {
     //  print('object');
     return GetBuilder<HomeController>(builder: (context) {
       return Scaffold(
+        drawer: Drawer(
+          width: const Size.fromWidth(200).width,
+          child: Scaffold(
+            body: Center(
+              child: MaterialButton(
+                color: Colors.blueGrey,
+                onPressed: () async => await controller.logOut(),
+                splashColor: Colors.blueGrey,
+                child: const Text(
+                  'LogOut',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            // controller.active.isTrue
+            //     ? controller.updateData()
+            //     : controller.putData();
             controller.updateData();
           },
+          child: const Icon(Icons.sync),
         ),
         appBar: AppBar(
           title: Text("About ${controller.loginModel.value!.username}"),

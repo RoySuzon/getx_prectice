@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:getx_prectice/app/routes/app_pages.dart';
 import 'package:getx_prectice/local_db.dart';
@@ -8,7 +7,6 @@ class SplashPageController extends GetxController {
   @override
   void onInit() async {
     isLoged.value = Boxes.loginBox.get("isLogin").toString();
-    log("message");
     await isLogin();
     super.onInit();
   }
@@ -21,11 +19,5 @@ class SplashPageController extends GetxController {
         Get.offNamed(Routes.LOGIN);
       }
     });
-  }
-
-  @override
-  void onReady() {
-    log("message");
-    super.onReady();
   }
 }

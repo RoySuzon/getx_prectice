@@ -18,12 +18,24 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await openBox("data");
   runApp(
-    GetMaterialApp(
+    const MyApp(),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Application",
       initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
-    ),
-  );
+    );
+  }
 }
 
 
